@@ -1,29 +1,38 @@
-import { Component, PropsWithChildren } from 'react'
-import { View, Text } from '@tarojs/components'
-import { AtButton } from 'taro-ui'
+import { FC, useMemo, useState } from 'react'
+import { View } from '@tarojs/components'
+import { AtTabBar } from "taro-ui";
 
-import "taro-ui/dist/style/components/button.scss" // 按需引入
+import "taro-ui/dist/style/components/flex.scss";
+import "taro-ui/dist/style/components/tab-bar.scss";
+import "taro-ui/dist/style/components/badge.scss";
+
 import './index.scss'
 
-export default class Index extends Component<PropsWithChildren> {
-  componentDidMount () { }
+const Index: FC = () => {
 
-  componentWillUnmount () { }
+  const [tabIndex, setTabIndex] = useState(1);
 
-  componentDidShow () { }
+  const tabList = useMemo(() => (
 
-  componentDidHide () { }
+  [{ title: '待办事项', iconType: 'bullet-list', text: 'new' },
+  { title: '拍照', iconType: 'camera' },
+  { title: '文件夹', iconType: 'folder', text: '100', max: 99 }]), []);
 
-  render () {
-    return (
-      <View className='index'>
-        <Text>Hello world!</Text>
-        <AtButton type='primary'>I need Taro UI</AtButton>
-        <Text>Taro UI 支持 Vue 了吗？</Text>
-        <AtButton type='primary' circle={true}>支持</AtButton>
-        <Text>共建？</Text>
-        <AtButton type='secondary' circle={true}>来</AtButton>
-      </View>
-    )
+
+  const handleClick = (event) => {
+    console.log(event);
   }
-}
+
+  return (
+    <View className='at-col'>
+    <AtTabBar
+    fixed
+    tabList={tabList}
+    onClick={handleClick}
+    current={tabIndex}
+    />
+    </View>
+  );
+};
+
+export default Index;
