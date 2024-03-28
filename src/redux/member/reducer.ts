@@ -1,11 +1,11 @@
-import { ActionTypes } from "./action";
-import { MemberAction, MemberState } from "./dto";
+import { ActionTypes } from './action';
+import { MemberAction, MemberState } from './dto';
 
 const initMemberState: MemberState = {
-  id: "",
-  name: "游客",
-  avatar: "https://img.yzcdn.cn/vant/cat.jpeg",
-  phone: "",
+  id: '',
+  name: '游客',
+  avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
+  phone: '',
 };
 
 export default (state: MemberState = initMemberState, action: MemberAction) => {
